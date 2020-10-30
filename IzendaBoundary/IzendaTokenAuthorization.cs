@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using SampleAuthAPI.IzendaBoundary.Models;
 using System;
+using System.Reflection;
 using System.IO;
+using System.Configuration;
 
 namespace SampleAuthAPI.IzendaBoundary
 {
@@ -46,11 +48,27 @@ namespace SampleAuthAPI.IzendaBoundary
 
         public static UserInfo DecryptIzendaAuthenticationMessage(string encryptedMessage)
         {
-            IConfigurationRoot configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
-
-            string rsaPrivateKey = "MIICWwIBAAKBgQCN5V2itI9eeTS4+muEq9tEdrpR4Zzxd/78xCDdZJUxzN8BwShbZX92JEdq2Wt4DBWiHXX5ZLEpOJnN0YtXhyDgWOQEyc+FzR1bVn1WByfiZqPm1xjhL4J6TSEcLtwm3AEDXRKGEj2wivif1Mhr/3PE0tNKI3osyLh/fQXpUkgM8QIDAQABAoGAFVLBCfjZTKipOB0FuEe9KSIwaKqfU5glPOXaTHrXgsbXQmO9BVMQ3veftdpbcIxcWeLUfjhX+SpUzp2tM2eOlH4MkD87361vCTId8IcOahEQ6wpSgIM7+c3l1ibUenzJ9+cgnD6RF3aMadUcE5gJ7xYhgAdMXIcJZh1CIEfplNMCQQDjIyP1C5SFt1njb8t+tZjBw/M7BIE6I3X/blfuVl/T3ulJjIbyCdSOsuVchJ8XwAwrumhOHPlAk/V0chAlzJhvAkEAn+1LQUlRqz+EuifKh6RjNZ8oxhWgeA4pfa3g5JQ/bZnm/vZEZQnW7Q5kA4duVizMFNc+YGu5Ln30NtBzrhCgnwJAcDVT9iKaZNSHW4xHA3nC1TZwWp+HF6mdCWsBlYSmIozkwqjhoYCpuTU3idUaoykE2jVkgfJeUEDH6ZbP01yXkQJAGE4P6dQivUvh+AikFwk8qqGNqM0Qni5Iz/jk/Ngq65VALe9vZYuhRlWxjXe/pQkZ2vD7Ydv9QLuTqeD0M7gDMQJAHQ8mQO+ouXYqZ9/1AA1rlUuEpZTpZ2n9ZJ4UgfTjTLcVhzuZ1lKmrd3JngMCkz4hOMzd1wcASMbT1KOHF5hwlw==";
-//            string rsaPrivateKey = Configuration["Jwt:Key"];
-//configuration.GetValue<string>("AppSettings:Settings:rsaPrivateKey");
+            string rsaPrivateKey = "";
+            try
+            {
+                string framework = Assembly
+                    .GetEntryAssembly()?
+                    .GetCustomAttribute<System.Runtime.Versioning.TargetFrameworkAttribute>()?
+                    .FrameworkName;
+                if (framework.Contains("core", StringComparison.OrdinalIgnoreCase)){
+                    IConfigurationRoot cb = new ConfigurationBuilder()
+                            .AddJsonFile("appsettings.json", optional: false)
+                            .Build();
+                    rsaPrivateKey = cb.GetValue<string>("AppSettings:Settings:rsaPrivateKey");
+                }
+                else
+                {
+                    rsaPrivateKey = ConfigurationManager.AppSettings["RSAPrivateKey"];
+                }
+            }
+            catch {
+                throw new Exception ("Configuration / RSA key can't be found");
+            }
             var cipher = new System.Security.Cryptography.RSACryptoServiceProvider();
 
             //Decrypt using RSA private key in PEM format.

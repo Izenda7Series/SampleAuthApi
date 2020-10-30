@@ -115,7 +115,27 @@ namespace SampleAuthAPI.IzendaBoundary
             var roleList = await WebAPIService.Instance.GetAsync<IList<RoleDetail>>("/role/all/" + (tenantId.HasValue ? tenantId.ToString() : null), authToken);
 
             return roleList;
-        } 
+        }
+        /// <summary>
+        /// Get list of Izenda users by tenant
+        /// For more information, please refer to https://www.izenda.com/docs/ref/api_user.html#post-user-all
+        /// </summary>
+        public static async Task<IList<UserDetail>> GetIzendaUsersByTenant(Guid? tenantId, string authToken)
+        {
+            IList<UserDetail> userList = await WebAPIService.Instance.GetAsync<IList<UserDetail>>("/user/all/" + (tenantId.HasValue ? tenantId.ToString() : null), authToken);
+            return userList;
+        }
+        /// <summary>
+        /// Get a user from the list of Izenda Users by the provided tenant
+        /// </summary>
+        public static async Task<UserDetail> GetIzendaUserByTenantAndName(string userName, string tenantName, string authToken)
+        {
+            TenantDetail tenant = await GetIzendaTenantByName(tenantName, authToken);
+            Guid? tnId = null;
+            if (tenant != null) tnId = tenant.Id;
+            IList<UserDetail> userList = await GetIzendaUsersByTenant(tnId, authToken);
+            return userList.FirstOrDefault(u => u.UserName.Equals(userName, StringComparison.InvariantCultureIgnoreCase));
+        }
         #endregion
     }
 }

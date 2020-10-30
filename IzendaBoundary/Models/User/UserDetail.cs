@@ -26,7 +26,7 @@ namespace SampleAuthAPI.IzendaBoundary.Models
         public string LastName { get; set; }
 
         public bool InitPassword { get; set; }
-
+        public bool Active { get; set; }
         public IList<RoleInfo> Roles
         {
             get { return _roles ?? (_roles = new List<RoleInfo>()); }
