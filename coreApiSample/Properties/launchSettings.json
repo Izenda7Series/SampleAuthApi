@@ -1,0 +1,18 @@
+{
+  "profiles": {
+    "coreAuth": {
+      "commandName": "Project",
+      "commandLineArgs": "--pOrt=3358",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:4001;http://localhost:4000"
+    },
+    "Development": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
