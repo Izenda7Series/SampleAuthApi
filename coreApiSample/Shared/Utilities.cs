@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SampleAuthAPI.coreApiSample.Shared
 {
-    public class Utilities
+    public static class Utilities
     {
         public static string GetStartupUrls(string[] args)
         {
@@ -52,7 +52,6 @@ namespace SampleAuthAPI.coreApiSample.Shared
         {
             DbContextOptionsBuilder ob = new DbContextOptionsBuilder<DBContext>();
             DBContext.BuildOptions(ob);
-// TODO: check if we can use the DI here.
             return new DBContext(ob.Options);
         }
     }

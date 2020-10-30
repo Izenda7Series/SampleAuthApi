@@ -52,7 +52,15 @@ namespace SampleAuthAPI.coreApiSample.Handlers
             if (!VerifyPassword(authData.password, user))
                 return "The password is incorrect";
 
-            // TODO: check if the user is active (in IzendaBoundary)
+            // our sample (custom authenticacion) database does not have the user status flag.
+            // we will use Izenda to find out if the user is active or not.
+            string adminToken = IzendaTokenAuthorization.GetIzendaAdminToken();
+            Task<IzendaBoundary.Models.UserDetail> getUser = IzendaUtilities.GetIzendaUserByTenantAndName(user.UserName, tn==null?"":tn.Name, adminToken);
+            IzendaBoundary.Models.UserDetail userDetails = getUser.Result;
+            if (userDetails == null)
+                return string.Format("The user {0} not found in [Izenda database]. Contact your administrator please", user.UserName);
+            else if(!userDetails.Active)
+                return string.Format("The user {0} was found but it is not active. Contact your administrator please", user.UserName);
             return ret;
         }
 
@@ -130,7 +138,7 @@ namespace SampleAuthAPI.coreApiSample.Handlers
                             return false;
                     }
                 }
-                string izendaAdminAuthToken = IzendaTokenAuthorization.GetIzendaAdminToken();
+                string adminToken = IzendaTokenAuthorization.GetIzendaAdminToken();
 
                 string assignedRole = String.IsNullOrEmpty(model.SelectedRole) ? "Employee" : model.SelectedRole;
                 Task<bool> createdUser = IzendaUtilities.CreateIzendaUser(
@@ -140,7 +148,7 @@ namespace SampleAuthAPI.coreApiSample.Handlers
                     model.FirstName,
                     model.IsAdmin,
                     assignedRole,
-                    izendaAdminAuthToken);
+                    adminToken);
                 // launch the task async and wait for the result.
                 ret = createdUser.Result;
             }
