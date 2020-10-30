@@ -37,3 +37,7 @@ obj
 .user
 /__ModelsBuild
 /.config
+*.user
+/Properties/PublishProfiles/*.user
+/Properties/PublishProfiles/*.pubxml
+/Properties/PublishProfiles
