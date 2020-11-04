@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace SampleAuthAPI.coreApiSample.Models
+namespace SampleAuthAPI.CoreApiSample.Models
 {
         public class CreateTenantBindingModel
         {

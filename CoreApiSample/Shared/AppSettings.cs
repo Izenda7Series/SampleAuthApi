@@ -1,4 +1,4 @@
-namespace SampleAuthAPI.coreApiSample.Shared
+namespace SampleAuthAPI.CoreApiSample.Shared
 {
     public class AppSettings
     {

@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper.QueryableExtensions;
-using SampleAuthAPI.coreApiSample.Models;
-using SampleAuthAPI.coreApiSample.Shared;
+using SampleAuthAPI.CoreApiSample.Models;
+using SampleAuthAPI.CoreApiSample.Shared;
 using SampleAuthAPI.IzendaBoundary;
 
-namespace SampleAuthAPI.coreApiSample.Handlers
+namespace SampleAuthAPI.CoreApiSample.Handlers
 {
     public class TenantHandler
     {

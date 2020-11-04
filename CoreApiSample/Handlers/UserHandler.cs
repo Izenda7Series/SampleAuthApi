@@ -2,12 +2,12 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
-using SampleAuthAPI.coreApiSample.Models;
-using SampleAuthAPI.coreApiSample.Shared;
+using SampleAuthAPI.CoreApiSample.Models;
+using SampleAuthAPI.CoreApiSample.Shared;
 using SampleAuthAPI.IzendaBoundary;
 using Microsoft.AspNetCore.Identity;
 
-namespace SampleAuthAPI.coreApiSample.Handlers
+namespace SampleAuthAPI.CoreApiSample.Handlers
 {
     public interface IUserHandler
     {

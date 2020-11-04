@@ -2,18 +2,18 @@
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using System.IdentityModel.Tokens.Jwt;
-using SampleAuthAPI.coreApiSample.Shared;
+using SampleAuthAPI.CoreApiSample.Shared;
 using Microsoft.Extensions.Options;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
-using SampleAuthAPI.coreApiSample.Models;
-using SampleAuthAPI.coreApiSample.Handlers;
+using SampleAuthAPI.CoreApiSample.Models;
+using SampleAuthAPI.CoreApiSample.Handlers;
 using SampleAuthAPI.IzendaBoundary;
 using SampleAuthAPI.IzendaBoundary.Models;
 
-namespace SampleAuthAPI.coreApiSample.Controllers
+namespace SampleAuthAPI.CoreApiSample.Controllers
 {
     public class AccountController : ControllerBase
     {

@@ -2,10 +2,10 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SampleAuthAPI.coreApiSample.Models;
-using SampleAuthAPI.coreApiSample.Handlers;
+using SampleAuthAPI.CoreApiSample.Models;
+using SampleAuthAPI.CoreApiSample.Handlers;
 
-namespace SampleAuthAPI.coreApiSample.Controllers
+namespace SampleAuthAPI.CoreApiSample.Controllers
 {
     public class UserController : ControllerBase
     {

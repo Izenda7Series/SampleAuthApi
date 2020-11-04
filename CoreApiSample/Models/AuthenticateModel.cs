@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace SampleAuthAPI.coreApiSample.Models
+namespace SampleAuthAPI.CoreApiSample.Models
 {
     public class AuthenticateModel
     {

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using SampleAuthAPI.coreApiSample.Models;
+using SampleAuthAPI.CoreApiSample.Models;
 
-namespace SampleAuthAPI.coreApiSample.Shared
+namespace SampleAuthAPI.CoreApiSample.Shared
 {
     public class DBContext : DbContext
     {

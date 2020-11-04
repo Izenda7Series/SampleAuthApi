@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace SampleAuthAPI.coreApiSample.Shared
+namespace SampleAuthAPI.CoreApiSample.Shared
 {
     public static class Utilities
     {

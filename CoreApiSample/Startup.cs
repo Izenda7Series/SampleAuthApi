@@ -5,15 +5,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
-using SampleAuthAPI.coreApiSample.Shared;
-using SampleAuthAPI.coreApiSample.Handlers;
+using SampleAuthAPI.CoreApiSample.Shared;
+using SampleAuthAPI.CoreApiSample.Handlers;
 using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System;
 
-namespace SampleAuthAPI.coreApiSample
+namespace SampleAuthAPI.CoreApiSample
 {
     public class Startup
     {

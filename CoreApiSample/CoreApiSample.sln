@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IzendaBoundary", "..\IzendaBoundary\IzendaBoundary.csproj", "{36A16781-EC31-491A-B2E6-21D8AFA5A683}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "coreApiSample", "coreApiSample.csproj", "{2D4C537A-2638-493A-8E8C-FAB02A2583B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreApiSample", "CoreApiSample.csproj", "{2D4C537A-2638-493A-8E8C-FAB02A2583B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

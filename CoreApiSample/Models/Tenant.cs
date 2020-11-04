@@ -1,4 +1,4 @@
-namespace SampleAuthAPI.coreApiSample.Models
+namespace SampleAuthAPI.CoreApiSample.Models
 {
     public class Tenant
     {

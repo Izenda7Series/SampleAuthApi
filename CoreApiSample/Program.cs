@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using SampleAuthAPI.coreApiSample.Shared;
+using SampleAuthAPI.CoreApiSample.Shared;
 
-namespace SampleAuthAPI.coreApiSample
+namespace SampleAuthAPI.CoreApiSample
 {
     public class Program
     {

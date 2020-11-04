@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 
-namespace SampleAuthAPI.coreApiSample.Shared
+namespace SampleAuthAPI.CoreApiSample.Shared
 {
     public class AppException : Exception
     {
