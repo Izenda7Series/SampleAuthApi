@@ -42,9 +42,11 @@ namespace SampleAuthAPI.CoreApiSample.Handlers
                     return string.Format("Tenant {0} not found", authData.tenant);
             }
 
+            int? tnId = null;
+            if (tn != null) tnId = tn.Id;
             AspNetUser user = dbCtx.AspNetUsers.SingleOrDefault(
-                                        u => u.UserName.ToLower().Equals(authData.username.ToLower()) &&
-                                        (tn==null ? u.Tenant_Id == null : u.Tenant_Id == tn.Id));
+                                        u => u.UserName.ToLower().Equals(authData.username.ToLower())
+                                        && u.Tenant_Id == tnId);
 
             if (user == null)
                 return string.Format("User {0} not found {1}", authData.username, tn == null ? "":"for the tenant " + tn.Name);

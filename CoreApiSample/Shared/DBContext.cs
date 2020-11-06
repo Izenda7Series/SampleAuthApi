@@ -33,23 +33,4 @@ namespace SampleAuthAPI.CoreApiSample.Shared
         }
         #endregion
     }
-
-
-
-
-
-
-
-
-
-
-    public class pgDBContext : DbContext
-    {
-        public pgDBContext(DbContextOptions options) : base(options)
-        {
-        }
-        public DbSet<AspNetUser> AspNetUsers { get; set; }
-        public DbSet<Tenant> Tenants { get; set; }
-    }
-
 }
