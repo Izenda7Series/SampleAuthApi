@@ -5,10 +5,7 @@
     <PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="__ModelsBuild\**" />
-    <Content Remove="__ModelsBuild\**" />
-    <EmbeddedResource Remove="__ModelsBuild\**" />
-    <None Remove="__ModelsBuild\**" />
+    <None Remove=".gitignore" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />

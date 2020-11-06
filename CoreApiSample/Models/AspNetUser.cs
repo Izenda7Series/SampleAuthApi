@@ -1,7 +1,3 @@
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
-using SampleAuthAPI.CoreApiSample.Shared;
-
 namespace SampleAuthAPI.CoreApiSample.Models
 {
     public class AspNetUser
