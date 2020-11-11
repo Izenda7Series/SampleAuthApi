@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using SampleAuthAPI.IzendaBoundary.ActiveDirectory;
 
 namespace SampleAuthAPI.CoreApiSample.Shared
 {
@@ -32,6 +33,12 @@ namespace SampleAuthAPI.CoreApiSample.Shared
         }
         public static string GetDefaultPassword() {
             return GetConfig()["AppSettings:DefaultPassword"];
+        }
+        public static ADConfig ADSettings()
+        {
+            ADConfig cfg = new ADConfig();
+            GetConfig().Bind("AppSettings:ActiveDirectory", cfg);
+            return cfg;
         }
         public static string GetDBType()
         {

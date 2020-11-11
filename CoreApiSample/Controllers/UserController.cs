@@ -20,15 +20,6 @@ namespace SampleAuthAPI.CoreApiSample.Controllers
         }
 
         [Authorize]
-        [HttpGet]
-        public IActionResult GetUsers()
-        {
-            IEnumerable<AspNetUser> users = userHnd.GetAll();
-            IList<AspNetUser> model = mapper.Map<IList<AspNetUser>>(users);
-            return Ok(model);
-        }
-
-        [Authorize]
         [HttpPost]
         public IActionResult CreateUser([FromBody] CreateUserBindingModel model)
         {

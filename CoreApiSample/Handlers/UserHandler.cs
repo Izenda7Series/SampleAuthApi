@@ -5,6 +5,7 @@ using System.Linq;
 using SampleAuthAPI.CoreApiSample.Models;
 using SampleAuthAPI.CoreApiSample.Shared;
 using SampleAuthAPI.IzendaBoundary;
+using SampleAuthAPI.IzendaBoundary.ActiveDirectory;
 using Microsoft.AspNetCore.Identity;
 
 namespace SampleAuthAPI.CoreApiSample.Handlers
@@ -12,8 +13,6 @@ namespace SampleAuthAPI.CoreApiSample.Handlers
     public interface IUserHandler
     {
         string Authenticate(AuthenticateModel authData);
-        IEnumerable<AspNetUser> GetAll();
-        AspNetUser GetById(int id);
         AspNetUser GetByName(string UserName);
         string CreateUser(CreateUserBindingModel model);
     }
@@ -42,12 +41,39 @@ namespace SampleAuthAPI.CoreApiSample.Handlers
                     return string.Format("Tenant {0} not found", authData.tenant);
             }
 
+            // in this example application, we do not use the full ActiveDirectory identity features.
+            // That, plus synchronizing the users in Izenda configuration DB and in the 
+            // authorization application DB, allows just to validate the user against the Active Directory.
+            // In case you dont want to synchronize the users and/or not using the authorization DB
+            // while still want to use the Active Directory - you need to implement
+            // the full - featured identity mechanizm with ActiveDirectory support.
+            //
+            // So, here we just validate the active directory user if we set to use the active directory.
+            ADUser adUser = null;
+            ADConfig adCfg = Utilities.ADSettings();
+
+            if (adCfg.UseActiveDirectory)
+                adUser = ADUtilities.ValidateADUser(authData.username, authData.password, adCfg);
+
+            if(adCfg.UseActiveDirectory && !adUser.IsValid)
+                return string.Format("The user {0} is invalid or not found in the Active Directory.\nError:{1}", authData.username, adUser.Reserved);
+
+            // Check if the user exists in the authentication database.
+            // For the Active Directory, we still will verify this too, even in case the user is valid on A.D.
             int? tnId = null;
             if (tn != null) tnId = tn.Id;
             AspNetUser user = dbCtx.AspNetUsers.SingleOrDefault(
                                         u => u.UserName.ToLower().Equals(authData.username.ToLower())
                                         && u.Tenant_Id == tnId);
 
+            // Tip.
+            // At this point, if the AD user exists/valid (adUser.IsValid == true), it is possible to automatically
+            // create the AD user in Izenda DB, if you'd like to. You can implement something like the following:
+            // if ((adCfg.UseActiveDirectory && adUser.IsValid) && user == null) {
+            //     user = (cast/retrieve to the AspNetUser)CreateUser(new CreateUserBindingModel { FirstName = "", LastName = "", Tenant = authData.tenant, Password = authData.password, IsAdmin = false });
+            // }
+            // See the article "Few aspects of Active Directory authentication" at Izenda Confluence board for details
+            // as of now, we expect the A.D. user to exist in the database. 
             if (user == null)
                 return string.Format("User {0} not found {1}", authData.username, tn == null ? "":"for the tenant " + tn.Name);
 
@@ -57,7 +83,7 @@ namespace SampleAuthAPI.CoreApiSample.Handlers
             // our sample (custom authenticacion) database does not have the user status flag.
             // we will use Izenda to find out if the user is active or not.
             string adminToken = IzendaTokenAuthorization.GetIzendaAdminToken();
-            Task<IzendaBoundary.Models.UserDetail> getUser = IzendaUtilities.GetIzendaUserByTenantAndName(user.UserName, tn==null?"":tn.Name, adminToken);
+            Task<IzendaBoundary.Models.UserDetail> getUser = IzendaUtilities.GetIzendaUserByTenantAndName(user.UserName, tn==null?null:tn.Name, adminToken);
             IzendaBoundary.Models.UserDetail userDetails = getUser.Result;
             if (userDetails == null)
                 return string.Format("The user {0} not found in [Izenda database]. Contact your administrator please", user.UserName);
@@ -66,15 +92,6 @@ namespace SampleAuthAPI.CoreApiSample.Handlers
             return ret;
         }
 
-        public IEnumerable<AspNetUser> GetAll()
-        {
-            return dbCtx.AspNetUsers;
-        }
-
-        public AspNetUser GetById(int id)
-        {
-            return dbCtx.AspNetUsers.Find(id);
-        }
         public AspNetUser GetByName(string name)
         {
             return dbCtx.AspNetUsers.FirstOrDefault(u => u.UserName.ToLower().Equals(name.ToLower()));
