@@ -1,17 +1,16 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using SampleAuthAPI.CoreApiSample.Shared;
 using SampleAuthAPI.CoreApiSample.Handlers;
 using AutoMapper;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System;
 
 namespace SampleAuthAPI.CoreApiSample
 {
@@ -68,9 +67,7 @@ namespace SampleAuthAPI.CoreApiSample
                     ValidateAudience = false
                 };
             });
-
             services.AddScoped<IUserHandler, UserHandler>();
-            services.AddRazorPages();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DBContext dataContext)
@@ -110,7 +107,6 @@ namespace SampleAuthAPI.CoreApiSample
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "api/{controller}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
             });
         }
     }

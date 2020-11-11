@@ -120,5 +120,17 @@ namespace SampleAuthAPI.CoreApiSample.Controllers
 
             return Ok(new { Token = token });
         }
-   }
+        [AllowAnonymous]
+        [HttpGet]
+        /// this endpoint returns the simple default page when the system is started from IIS
+        public ContentResult Index()
+        {
+            string page = @"<!DOCTYPE html><html><head><meta charset='utf-8' />
+                        <title>Izenda Sample Authentication Service Application for .Net Core 2.2</title>
+                        </head><body style='text-align:center'>
+                        <h2>Izenda Sample Authentication Service Application for .Net Core 2.2</h2>
+                        <div>USAGE:</div><div>api/account/GetIzendaAccessToken/</div><div>etc...</div></body></html>";
+            return base.Content(page, "text/html");
+        }
+    }
 }
