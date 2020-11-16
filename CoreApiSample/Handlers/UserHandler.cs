@@ -193,7 +193,8 @@ namespace SampleAuthAPI.CoreApiSample.Handlers
         private static bool VerifyPassword(string password, AspNetUser user)
         {
             PasswordHasher<string> hasher = new PasswordHasher<string>();
-            return (PasswordVerificationResult.Success ==  hasher.VerifyHashedPassword(user.UserName, user.PasswordHash, password));
+            PasswordVerificationResult hashRet = hasher.VerifyHashedPassword(user.UserName, user.PasswordHash, password);
+            return (hashRet == PasswordVerificationResult.Success || hashRet == PasswordVerificationResult.SuccessRehashNeeded);
         }
         #endregion
     }
