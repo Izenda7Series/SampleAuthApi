@@ -127,12 +127,9 @@ namespace SampleAuthAPI.CoreApiSample.Handlers
             {
                 Id = Guid.NewGuid().ToString(),
                 UserName = model.UserID,
-                NormalizedUserName = model.UserID.ToUpper(),
                 Email = model.UserID,
-                NormalizedEmail = model.UserID.ToUpper(),
                 PasswordHash = hash,
-                SecurityStamp = stamp,
-                ConcurrencyStamp = Guid.NewGuid().ToString()
+                SecurityStamp = stamp
             };
             Tenant tn = TenantHandler.GetTenantByName(model.Tenant);
             if (tn != null) user.Tenant_Id = tn.Id;
