@@ -13,6 +13,6 @@ namespace SampleAuthAPI.CoreApiSample.Models
         public string PhoneNumber { get; set; }
         public string PasswordHash { get; set; }
         public string SecurityStamp { get; set; }
-        public int? Tenant_Id { get; set; }
+        public int? TenantId { get; set; }
     }
 }

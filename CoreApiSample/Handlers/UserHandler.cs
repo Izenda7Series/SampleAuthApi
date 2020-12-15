@@ -64,7 +64,7 @@ namespace SampleAuthAPI.CoreApiSample.Handlers
             if (tn != null) tnId = tn.Id;
             AspNetUser user = dbCtx.AspNetUsers.SingleOrDefault(
                                         u => u.UserName.ToLower().Equals(authData.username.ToLower())
-                                        && u.Tenant_Id == tnId);
+                                        && u.TenantId == tnId);
 
             // Tip.
             // At this point, if the AD user exists/valid (adUser.IsValid == true), it is possible to automatically
@@ -105,7 +105,7 @@ namespace SampleAuthAPI.CoreApiSample.Handlers
                 Tenant tn = null;
                 if (!string.IsNullOrEmpty(model.Tenant)) tn = TenantHandler.GetTenantByName(model.Tenant);
                 if (dbCtx.AspNetUsers.Any(u => (u.UserName.ToLower().Equals(model.UserID.ToLower()))
-                                            && (tn == null ? u.Tenant_Id == null : u.Tenant_Id == tn.Id)))
+                                            && (tn == null ? u.TenantId == null : u.TenantId == tn.Id)))
                     throw new AppException("The user ID: \"" + model.UserID + "\" conflicts with the name in our DB" + (tn == null ? "":(" for tenant " + tn.Name)));
                 bool isSaved = CreateCustomUser(model);
                 if (isSaved) isSaved = CreateIzendaUser(model);
@@ -132,7 +132,7 @@ namespace SampleAuthAPI.CoreApiSample.Handlers
                 SecurityStamp = stamp
             };
             Tenant tn = TenantHandler.GetTenantByName(model.Tenant);
-            if (tn != null) user.Tenant_Id = tn.Id;
+            if (tn != null) user.TenantId = tn.Id;
 
             dbCtx.AspNetUsers.Add(user);
             int savedNum = dbCtx.SaveChanges();
