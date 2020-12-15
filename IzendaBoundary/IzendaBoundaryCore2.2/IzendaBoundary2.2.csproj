@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp2.2</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Include="..\IzendaTokenAuthorization.cs" Link="IzendaTokenAuthorization.cs" />
+	  <Compile Include="..\IzendaUtilities.cs" Link="IzendaUtilities.cs" />
+	  <Compile Include="..\StringCipher.cs" Link="StringCipher.cs" />
+	  <Compile Include="..\WebAPIService.cs" Link="WebAPIService.cs" />
+	  <Compile Include="..\Models\ErrorViewModel.cs" Link="Models\ErrorViewModel.cs" />
+	  <Compile Include="..\Models\Role\AddRoleResponeMessage.cs" Link="Models\Role\AddRoleResponeMessage.cs" />
+	  <Compile Include="..\Models\Role\RoleDetail.cs" Link="Models\Role\RoleDetail.cs" />
+	  <Compile Include="..\Models\Role\RoleInfo.cs" Link="Models\Role\RoleInfo.cs" />
+	  <Compile Include="..\Models\Tenant\TenantDetail.cs" Link="Models\Tenant\TenantDetail.cs" />
+	  <Compile Include="..\Models\User\UserDetail.cs" Link="Models\User\UserDetail.cs" />
+	  <Compile Include="..\Models\User\UserInfo.cs" Link="Models\User\UserInfo.cs" />
+	  <Compile Include="..\ActiveDirectory\ADConfig.cs" Link="ActiveDirectory\ADConfig.cs" />
+	  <Compile Include="..\ActiveDirectory\ADUser.cs" Link="ActiveDirectory\ADUser.cs" />
+	  <Compile Include="..\ActiveDirectory\ADUtilities.cs" Link="ActiveDirectory\ADUtilities.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="2.2.12" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+		<PackageReference Include="System.DirectoryServices.AccountManagement" Version="4.7.0" />
+	</ItemGroup>
+
+</Project>

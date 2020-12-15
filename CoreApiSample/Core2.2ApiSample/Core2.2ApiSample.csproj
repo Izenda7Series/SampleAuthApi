@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp2.2</TargetFramework>
+		<AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove=".gitignore" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Include="..\Controllers\AccountController.cs" Link="Controllers\AccountController.cs" />
+	  <Compile Include="..\Controllers\TenantController.cs" Link="Controllers\TenantController.cs" />
+	  <Compile Include="..\Controllers\UserController.cs" Link="Controllers\UserController.cs" />
+	  <Compile Include="..\Handlers\TenantHandler.cs" Link="Handlers\TenantHandler.cs" />
+	  <Compile Include="..\Handlers\UserHandler.cs" Link="Handlers\UserHandler.cs" />
+	  <Compile Include="..\Models\AspNetUser.cs" Link="Models\AspNetUser.cs" />
+	  <Compile Include="..\Models\AuthenticateModel.cs" Link="Models\AuthenticateModel.cs" />
+	  <Compile Include="..\Models\FEMethodsModels.cs" Link="Models\FEMethodsModels.cs" />
+	  <Compile Include="..\Models\Tenant.cs" Link="Models\Tenant.cs" />
+	  <Compile Include="..\Shared\AppException.cs" Link="Shared\AppException.cs" />
+	  <Compile Include="..\Shared\AppSettings.cs" Link="Shared\AppSettings.cs" />
+	  <Compile Include="..\Shared\DBContext.cs" Link="Shared\DBContext.cs" />
+	  <Compile Include="..\Shared\Utilities.cs" Link="Shared\Utilities.cs" />
+	  <Content Include="..\Properties\launchSettings.json" Link="Properties\launchSettings.json" />
+	  <Content Include="..\appsettings.json" Link="appsettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="10.1.1" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.App" />
+		<PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+		<PackageReference Include="MySql.Data.EntityFrameworkCore" Version="6.10.9" />
+		<PackageReference Include="Npgsql" Version="4.1.5" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.4" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\IzendaBoundary\IzendaBoundaryCore2.2\IzendaBoundary2.2.csproj" />
+	</ItemGroup>
+
+</Project>

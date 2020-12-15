@@ -5,6 +5,12 @@
     <PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Core2.2ApiSample\**" />
+    <Content Remove="Core2.2ApiSample\**" />
+    <EmbeddedResource Remove="Core2.2ApiSample\**" />
+    <None Remove="Core2.2ApiSample\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove=".gitignore" />
   </ItemGroup>
   <ItemGroup>
