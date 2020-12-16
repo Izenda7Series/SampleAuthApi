@@ -45,4 +45,8 @@
 	  <ProjectReference Include="..\..\IzendaBoundary\IzendaBoundaryCore2.2\IzendaBoundary2.2.csproj" />
 	</ItemGroup>
 
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="copy ..\appsettings.json $(ProjectDir)" />
+	</Target>
+
 </Project>
