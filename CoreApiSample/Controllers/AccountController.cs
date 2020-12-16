@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
+using System.Reflection;
 using Microsoft.AspNetCore.Authorization;
 using SampleAuthAPI.CoreApiSample.Models;
 using SampleAuthAPI.CoreApiSample.Handlers;
@@ -125,11 +126,15 @@ namespace SampleAuthAPI.CoreApiSample.Controllers
         /// this endpoint returns the simple default page when the system is started from IIS
         public ContentResult Index()
         {
-            string page = @"<!DOCTYPE html><html><head><meta charset='utf-8' />
-                        <title>Izenda Sample Authentication Service Application for .Net Core 2.2</title>
+            string framework = Assembly
+                .GetEntryAssembly()?
+                .GetCustomAttribute<System.Runtime.Versioning.TargetFrameworkAttribute>()?
+                .FrameworkName;
+            string page = string.Format(@"<!DOCTYPE html><html><head><meta charset='utf-8' />
+                        <title>Izenda Sample Authentication Service Application for {0}</title>
                         </head><body style='text-align:center'>
-                        <h2>Izenda Sample Authentication Service Application for .Net Core 2.2</h2>
-                        <div>USAGE:</div><div>api/account/GetIzendaAccessToken/</div><div>etc...</div></body></html>";
+                        <h2>Izenda Sample Authentication Service Application for {0}</h2>
+                        <div>USAGE:</div><div>api/account/GetIzendaAccessToken/</div><div>etc...</div></body></html>", framework);
             return base.Content(page, "text/html");
         }
     }
