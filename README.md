@@ -5,8 +5,10 @@ The SampleAuthApi repository holds examples of Sample Authentication Application
 
 ### Q. What is in this repository?
 
-### A. It contains a sample web api application that shows examples of authentication, api controllers, and other izenda interactions through code examples all in a single repository. It also contains database generation scripts to make it easier to get an integrated Izenda instance deployed. 
+### A. It contains a sample web api applications that shows examples of authentication, api controllers, and other izenda interactions through code examples all in a single repository. It also contains database generation scripts to make it easier to get an integrated Izenda instance deployed. 
 (You may recognize the WebApi2StarterKit which was previously in our other sample kit repositories)
+ 
+ - This repository also includes a .Net Core version of the sample api application
 
  :warning: **The SampleAuthApi Repository is designed for demonstration purposes and should not be used as an “as-is” fully-integrated solution. You can use the kit for reference or a baseline but ensure that security and customization meet the standards of your company.**
 
@@ -102,7 +104,7 @@ WHERE [Name] = 'AuthGetAccessTokenUrl'
 
 ## Further details about Izenda integration
 
-- <a href="https://www.izenda.com/docs/install/.install.html">Installation and Maintenance Guide<a/>
-- <a href="https://www.izenda.com/docs/dev/.developer_guide.html">Developer Guide</a>
-- <a href="https://www.izenda.com/docs/dev/.developer_guide_integrated_scenarios.html">Developer Guide for Integrated Scenarios</a>
+- [Installation and Maintenance Guide](https://www.izenda.com/docs/install/.install.html)
+- [Developer Guide](https://www.izenda.com/docs/dev/.developer_guide.html)
+- [Developer Guide for Integrated Scenarios](https://www.izenda.com/docs/dev/.developer_guide_integrated_scenarios.html)
 
